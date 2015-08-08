@@ -1,5 +1,13 @@
 console.log("Don't Remove Poke is working!");
-$('._50-0._50z-').css("visibility","hidden");
-var observer = new MutationObserver(function(mutations){
-    $('._50-0._50z-').css("visibility","hidden");
-}).observe($('#poke_live_new').get(0) ,{childList:true,subtree:true});
+//For normal page load
+handler();
+//For javascript page load (from notification)
+var observer = new MutationObserver(handler).observe($('.fb_content.clearfix').get(0) ,{childList:true});
+
+function handler(mutations){
+  $('._50z-').addClass("hidden_elem")
+  new MutationObserver(function(mutations){
+      $('._50z-').addClass("hidden_elem");
+  }).observe($('#poke_live_new').get(0) ,{childList:true,subtree:true});
+}
+
